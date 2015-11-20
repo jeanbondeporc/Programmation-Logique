@@ -1,0 +1,32 @@
+enfant(E,P) :- 
+	pere(P,E).
+enfant(E,P) :-
+	mere(P,E).
+
+parent(P,E) :-
+	enfant(E,P).
+
+grand_pere(G,E) :-
+	pere(G,X),
+	parent(X,E).
+
+frere(F,E) :- 
+	homme(F),
+	parent(P,F),
+	parent(P,E).
+
+oncle(O,N) :-
+	frere(O,F),
+	parent(F,N).
+
+cousin(C,E) :-
+	homme(C),
+	oncle(O,E),
+	parent(O,C).
+
+le_roi_est_mort_vive_le_roi (R1, D, R2) :-
+	roi(R1, _, _, D),
+	roi(_ , R2, D, _).
+
+
+	
